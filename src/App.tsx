@@ -206,7 +206,7 @@ export default function App() {
         {/* PAGE 1 CONTENT */}
         <div className="print-page print-page-1 flex flex-col">
           {/* Header Banner */}
-          <div className="mb-4 print:mb-2 text-center">
+          <div className="mb-4 print:mb-2 text-center print-center">
             <img 
               src="https://i.ibb.co/3mVPmrm8/marta-perfil-fundo-transparente.png" 
               alt="Banner Marta Ana Chiconato" 
@@ -392,7 +392,7 @@ export default function App() {
 
           {/* Section: Pináculos (Moved to Page 2) */}
           <section className="mb-6">
-            <div className="text-center mb-6">
+            <div className="text-center mb-6 print-center">
               <h2 className="text-base tracking-[0.2em] uppercase font-bold">Pináculos — <span className="italic text-[#8b2b2b]">Ciclos de Vida</span></h2>
               <div className="mt-1 w-16 h-1 bg-[#8b2b2b] mx-auto"></div>
             </div>
@@ -431,7 +431,7 @@ export default function App() {
 
           {/* Section: Análise Energética - Chakras */}
           <section className="mb-6">
-            <div className="text-center mb-8">
+            <div className="text-center mb-8 print-center">
               <h2 className="text-lg tracking-[0.2em] uppercase font-bold">Análise Energética — <span className="italic text-[#8b2b2b]">Chakras</span></h2>
               <div className="mt-2 w-24 h-1 bg-[#8b2b2b] mx-auto"></div>
             </div>
@@ -559,11 +559,22 @@ export default function App() {
             box-sizing: border-box !important;
             display: flex !important;
             flex-direction: column !important;
+            align-items: stretch !important;
+            justify-content: flex-start !important;
             overflow: hidden !important;
             background-color: #fdfcf8 !important;
             page-break-after: always !important;
             break-after: page !important;
             margin: 0 !important;
+            text-align: left !important;
+          }
+          .print-center {
+            display: flex !important;
+            flex-direction: column !important;
+            align-items: center !important;
+            justify-content: center !important;
+            text-align: center !important;
+            width: 100% !important;
           }
           .print-page-1 {
             padding-top: 5mm !important;
@@ -590,7 +601,10 @@ export default function App() {
           section {
             page-break-inside: avoid;
             margin-bottom: 10px !important;
-            display: block !important;
+            display: flex !important;
+            flex-direction: column !important;
+            align-items: stretch !important;
+            justify-content: flex-start !important;
             width: 100% !important;
             text-align: left !important;
           }
@@ -632,6 +646,7 @@ export default function App() {
           }
           .flex {
             display: flex !important;
+            justify-content: flex-start !important;
           }
           .flex-col {
             flex-direction: column !important;
