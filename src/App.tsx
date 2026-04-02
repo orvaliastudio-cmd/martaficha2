@@ -436,7 +436,7 @@ export default function App() {
               <div className="mt-2 w-24 h-1 bg-[#8b2b2b] mx-auto"></div>
             </div>
             
-            <div className="space-y-8 print:space-y-1">
+            <div className="space-y-8 print:space-y-0">
               {[
                 { key: 'coronario', label: 'Coronário', icon: 'https://i.ibb.co/Vs1dW6X/1-coronario.png' },
                 { key: 'frontal', label: 'Frontal', icon: 'https://i.ibb.co/xKNqLz36/2-frontal.png' },
@@ -446,55 +446,55 @@ export default function App() {
                 { key: 'esplenico', label: 'Chakra Esplênico', icon: 'https://i.ibb.co/LXfy4DFW/6-espl-nico.png' },
                 { key: 'basico', label: 'Chakra Básico', icon: 'https://i.ibb.co/8g4nnQvh/7-basico.png' },
               ].map((chakra) => (
-                <div key={chakra.key} className="flex flex-col sm:flex-row items-center sm:items-start gap-4 sm:gap-8 print:flex-row print:items-start print:gap-4">
-                  <div className="w-[100px] print:w-[60px] flex justify-center shrink-0">
+                <div key={chakra.key} className="flex flex-col sm:flex-row items-center sm:items-start gap-4 sm:gap-8 print:flex-row print:items-start print:gap-2">
+                  <div className="w-[100px] print:w-[50px] flex justify-center shrink-0">
                     <img 
                       src={chakra.icon} 
                       alt={chakra.label} 
-                      className="w-16 h-16 print:w-10 print:h-10 object-contain"
+                      className="w-16 h-16 print:w-8 print:h-8 object-contain"
                       referrerPolicy="no-referrer"
                     />
                   </div>
                   <div className="flex-grow pt-1 w-full">
                     <div className="flex flex-col sm:flex-row sm:items-center justify-between mb-1 gap-2">
-                      <span className="text-lg italic font-bold text-center sm:text-left print:text-sm">{chakra.label}</span>
+                      <span className="text-lg italic font-bold text-center sm:text-left print:text-xs">{chakra.label}</span>
                       <div className="flex flex-wrap justify-center sm:justify-end gap-3 sm:gap-4 print:gap-2">
-                        <label className="flex items-center gap-1.5 text-[10px] uppercase cursor-pointer font-bold">
+                        <label className="flex items-center gap-1.5 text-[10px] uppercase cursor-pointer font-bold print:text-[8px]">
                           <input
                             type="checkbox"
                             checked={formData.chakras[chakra.key as keyof FormData['chakras']].equilibrado}
                             onChange={(e) => updateChakra(chakra.key as keyof FormData['chakras'], 'equilibrado', e.target.checked)}
-                            className="w-3.5 h-3.5 accent-stone-800"
+                            className="w-3.5 h-3.5 accent-stone-800 print:w-3 print:h-3"
                           />
                           Equilibrado
                         </label>
-                        <label className="flex items-center gap-1.5 text-[10px] uppercase cursor-pointer font-bold">
+                        <label className="flex items-center gap-1.5 text-[10px] uppercase cursor-pointer font-bold print:text-[8px]">
                           <input
                             type="checkbox"
                             checked={formData.chakras[chakra.key as keyof FormData['chakras']].desequilibrio}
                             onChange={(e) => updateChakra(chakra.key as keyof FormData['chakras'], 'desequilibrio', e.target.checked)}
-                            className="w-3.5 h-3.5 accent-stone-800"
+                            className="w-3.5 h-3.5 accent-stone-800 print:w-3 print:h-3"
                           />
                           Desequilíbrio
                         </label>
-                        <label className="flex items-center gap-1.5 text-[10px] uppercase cursor-pointer font-bold">
+                        <label className="flex items-center gap-1.5 text-[10px] uppercase cursor-pointer font-bold print:text-[8px]">
                           <input
                             type="checkbox"
                             checked={formData.chakras[chakra.key as keyof FormData['chakras']].emDesenvolvimento}
                             onChange={(e) => updateChakra(chakra.key as keyof FormData['chakras'], 'emDesenvolvimento', e.target.checked)}
-                            className="w-3.5 h-3.5 accent-stone-800"
+                            className="w-3.5 h-3.5 accent-stone-800 print:w-3 print:h-3"
                           />
                           Em Desenvolvimento
                         </label>
                       </div>
                     </div>
                     <div className="flex flex-col sm:flex-row sm:items-baseline gap-2">
-                      <span className="text-[10px] font-bold uppercase text-stone-500 whitespace-nowrap">Observações:</span>
+                      <span className="text-[10px] font-bold uppercase text-stone-500 whitespace-nowrap print:text-[8px]">Observações:</span>
                       <input
                         type="text"
                         value={formData.chakras[chakra.key as keyof FormData['chakras']].observacoes}
                         onChange={(e) => updateChakra(chakra.key as keyof FormData['chakras'], 'observacoes', e.target.value)}
-                        className="flex-grow border-b border-stone-300 bg-transparent outline-none py-0.5 text-sm"
+                        className="flex-grow border-b border-stone-300 bg-transparent outline-none py-0.5 text-sm print:text-xs"
                       />
                     </div>
                   </div>
@@ -554,8 +554,8 @@ export default function App() {
             overflow: visible !important;
           }
           .print-page {
-            padding: 10mm 15mm !important;
-            height: 290mm !important;
+            padding: 8mm 12mm !important;
+            height: 296mm !important;
             box-sizing: border-box !important;
             display: flex !important;
             flex-direction: column !important;
@@ -584,7 +584,7 @@ export default function App() {
             padding-top: 5mm !important;
           }
           .print-page-3 {
-            height: 290mm !important;
+            height: 296mm !important;
             page-break-after: auto !important;
             break-after: auto !important;
           }
