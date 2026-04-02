@@ -321,7 +321,7 @@ export default function App() {
           </section>
         </div>
 
-        {/* PAGE 2 CONTENT */}
+        {/* PAGE 2 CONTENT: 4, 5 and Pináculos */}
         <div className="print-page-2 min-h-screen md:min-h-[297mm] flex flex-col pt-8 print:pt-12">
           {/* Page Header for Print */}
           <div className="hidden print:flex justify-between items-center mb-8 border-b border-stone-200 pb-4">
@@ -330,12 +330,12 @@ export default function App() {
           </div>
 
           {/* Section 4: Planos de Consciência */}
-          <section className="mb-12">
+          <section className="mb-8">
             <h3 className="text-base font-bold uppercase tracking-wider mb-6 flex items-center gap-4">
               4. PLANOS DE CONSCIÊNCIA
               <div className="flex-grow border-t border-stone-200"></div>
             </h3>
-            <div className="space-y-6 pl-0 sm:pl-4">
+            <div className="space-y-4 pl-0 sm:pl-4">
               {[
                 { label: 'MENTAL', nums: [1, 8] },
                 { label: 'EMOCIONAL', nums: [2, 3, 6] },
@@ -364,68 +364,59 @@ export default function App() {
           </section>
 
           {/* Section 5: Karma e Darma */}
-          <section className="mb-12">
+          <section className="mb-8">
             <h3 className="text-base font-bold uppercase tracking-wider mb-6 flex items-center gap-4">
               5. KARMA E DARMA
               <div className="flex-grow border-t border-stone-200"></div>
             </h3>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-8">
-              <div className="border border-stone-300 p-6 rounded-sm">
-                <label className="text-sm font-bold block mb-4 uppercase tracking-widest text-stone-600">Karma:</label>
+              <div className="border border-stone-300 p-4 rounded-sm">
+                <label className="text-sm font-bold block mb-2 uppercase tracking-widest text-stone-600">Karma:</label>
                 <textarea
                   value={formData.karma}
                   onChange={(e) => setFormData(prev => ({ ...prev, karma: e.target.value }))}
-                  rows={10}
+                  rows={8}
                   className="w-full bg-transparent border-none outline-none resize-none leading-relaxed"
                   style={{ backgroundImage: 'linear-gradient(transparent, transparent 27px, #e5e7eb 27px)', backgroundSize: '100% 28px' }}
                 />
               </div>
-              <div className="border border-stone-300 p-6 rounded-sm">
-                <label className="text-sm font-bold block mb-4 uppercase tracking-widest text-stone-600">Darma:</label>
+              <div className="border border-stone-300 p-4 rounded-sm">
+                <label className="text-sm font-bold block mb-2 uppercase tracking-widest text-stone-600">Darma:</label>
                 <textarea
                   value={formData.darma}
                   onChange={(e) => setFormData(prev => ({ ...prev, darma: e.target.value }))}
-                  rows={10}
+                  rows={8}
                   className="w-full bg-transparent border-none outline-none resize-none leading-relaxed"
                   style={{ backgroundImage: 'linear-gradient(transparent, transparent 27px, #e5e7eb 27px)', backgroundSize: '100% 28px' }}
                 />
               </div>
             </div>
           </section>
-        </div>
 
-        {/* PAGE 3 CONTENT */}
-        <div className="print-page-3 min-h-screen md:min-h-[297mm] flex flex-col pt-8 print:pt-12">
-          {/* Page Header for Print */}
-          <div className="hidden print:flex justify-between items-center mb-8 border-b border-stone-200 pb-4">
-            <span className="text-xs font-bold text-stone-400 uppercase tracking-widest">Ficha de Atendimento — Marta Ana Chiconato</span>
-            <span className="text-xs font-bold text-stone-400 uppercase tracking-widest">Página 3</span>
-          </div>
-
-          {/* Section: Pináculos */}
+          {/* Section: Pináculos (Moved to Page 2) */}
           <section className="mb-6">
-            <div className="text-center mb-8">
-              <h2 className="text-xl tracking-[0.2em] uppercase font-bold">Pináculos — <span className="italic text-[#8b2b2b]">Ciclos de Vida</span></h2>
-              <div className="mt-2 w-24 h-1 bg-[#8b2b2b] mx-auto"></div>
+            <div className="text-center mb-6">
+              <h2 className="text-lg tracking-[0.2em] uppercase font-bold">Pináculos — <span className="italic text-[#8b2b2b]">Ciclos de Vida</span></h2>
+              <div className="mt-1 w-16 h-1 bg-[#8b2b2b] mx-auto"></div>
             </div>
-            <div className="grid grid-cols-1 gap-6">
+            <div className="grid grid-cols-2 gap-4">
               {[
                 { key: 'p1', label: '1º PINÁCULO' },
                 { key: 'p2', label: '2º PINÁCULO' },
                 { key: 'p3', label: '3º PINÁCULO' },
                 { key: 'p4', label: '4º PINÁCULO' },
               ].map((p) => (
-                <div key={p.key} className="border border-stone-300 p-6 rounded-sm">
-                  <h4 className="text-xs font-bold uppercase tracking-[0.15em] mb-4 text-stone-700">{p.label}</h4>
+                <div key={p.key} className="border border-stone-300 p-3 rounded-sm">
+                  <h4 className="text-[10px] font-bold uppercase tracking-[0.15em] mb-2 text-stone-700">{p.label}</h4>
                   <textarea
                     value={formData.pinaculos[p.key as keyof FormData['pinaculos']]}
                     onChange={(e) => setFormData(prev => ({
                       ...prev,
                       pinaculos: { ...prev.pinaculos, [p.key]: e.target.value }
                     }))}
-                    rows={6}
-                    className="w-full bg-transparent border-none outline-none resize-none leading-relaxed text-base"
-                    style={{ backgroundImage: 'linear-gradient(transparent, transparent 27px, #e5e7eb 27px)', backgroundSize: '100% 28px' }}
+                    rows={4}
+                    className="w-full bg-transparent border-none outline-none resize-none leading-tight text-sm"
+                    style={{ backgroundImage: 'linear-gradient(transparent, transparent 23px, #e5e7eb 23px)', backgroundSize: '100% 24px' }}
                   />
                 </div>
               ))}
@@ -433,12 +424,12 @@ export default function App() {
           </section>
         </div>
 
-        {/* PAGE 4 CONTENT */}
-        <div className="print-page-4 min-h-screen md:min-h-[297mm] flex flex-col pt-8 print:pt-12">
+        {/* PAGE 3 CONTENT: Chakras */}
+        <div className="print-page-3 min-h-screen md:min-h-[297mm] flex flex-col pt-8 print:pt-12">
           {/* Page Header for Print */}
           <div className="hidden print:flex justify-between items-center mb-8 border-b border-stone-200 pb-4">
             <span className="text-xs font-bold text-stone-400 uppercase tracking-widest">Ficha de Atendimento — Marta Ana Chiconato</span>
-            <span className="text-xs font-bold text-stone-400 uppercase tracking-widest">Página 4</span>
+            <span className="text-xs font-bold text-stone-400 uppercase tracking-widest">Página 3</span>
           </div>
 
           {/* Section: Análise Energética - Chakras */}
@@ -553,7 +544,7 @@ export default function App() {
             position: relative !important;
             overflow: visible !important;
           }
-          .print-page-1, .print-page-2, .print-page-3, .print-page-4 {
+          .print-page-1, .print-page-2, .print-page-3 {
             padding: 15mm 20mm !important;
             min-height: 297mm !important;
             box-sizing: border-box !important;
@@ -632,11 +623,11 @@ export default function App() {
           .col-span-2 {
             grid-column: span 2 / span 2 !important;
           }
-          .print-page-1, .print-page-2, .print-page-3 {
+          .print-page-1, .print-page-2 {
             page-break-after: always !important;
             break-after: page !important;
           }
-          .print-page-2, .print-page-3, .print-page-4 {
+          .print-page-2, .print-page-3 {
             page-break-before: always !important;
             break-before: page !important;
           }
