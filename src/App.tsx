@@ -210,7 +210,7 @@ export default function App() {
             <img 
               src="https://i.ibb.co/3mVPmrm8/marta-perfil-fundo-transparente.png" 
               alt="Banner Marta Ana Chiconato" 
-              className="w-full h-auto object-contain max-h-32 print:max-h-24 mx-auto"
+              className="w-full h-auto object-contain max-h-32 print:max-h-24 mx-auto print-logo"
               referrerPolicy="no-referrer"
             />
             <div className="mt-2 border-t border-stone-300 w-full"></div>
@@ -332,7 +332,7 @@ export default function App() {
               4. PLANOS DE CONSCIÊNCIA
               <div className="flex-grow border-t border-stone-200"></div>
             </h3>
-            <div className="space-y-4 pl-0 sm:pl-4">
+            <div className="space-y-4 print:space-y-3 pl-0 sm:pl-4">
               {[
                 { label: 'MENTAL', nums: [1, 8] },
                 { label: 'EMOCIONAL', nums: [2, 3, 6] },
@@ -436,7 +436,7 @@ export default function App() {
               <div className="mt-2 w-24 h-1 bg-[#8b2b2b] mx-auto"></div>
             </div>
             
-            <div className="space-y-8 print:space-y-6">
+            <div className="space-y-8 print:space-y-2">
               {[
                 { key: 'coronario', label: 'Coronário', icon: 'https://i.ibb.co/Vs1dW6X/1-coronario.png' },
                 { key: 'frontal', label: 'Frontal', icon: 'https://i.ibb.co/xKNqLz36/2-frontal.png' },
@@ -446,18 +446,18 @@ export default function App() {
                 { key: 'esplenico', label: 'Chakra Esplênico', icon: 'https://i.ibb.co/LXfy4DFW/6-espl-nico.png' },
                 { key: 'basico', label: 'Chakra Básico', icon: 'https://i.ibb.co/8g4nnQvh/7-basico.png' },
               ].map((chakra) => (
-                <div key={chakra.key} className="flex flex-col sm:flex-row items-center sm:items-start gap-4 sm:gap-8 print:flex-row print:items-start print:gap-6">
-                  <div className="w-[100px] print:w-[80px] flex justify-center shrink-0">
+                <div key={chakra.key} className="flex flex-col sm:flex-row items-center sm:items-start gap-4 sm:gap-8 print:flex-row print:items-start print:gap-4">
+                  <div className="w-[100px] print:w-[60px] flex justify-center shrink-0">
                     <img 
                       src={chakra.icon} 
                       alt={chakra.label} 
-                      className="w-16 h-16 print:w-14 print:h-14 object-contain"
+                      className="w-16 h-16 print:w-10 print:h-10 object-contain"
                       referrerPolicy="no-referrer"
                     />
                   </div>
                   <div className="flex-grow pt-1 w-full">
-                    <div className="flex flex-col sm:flex-row sm:items-center justify-between mb-2 gap-2">
-                      <span className="text-lg italic font-bold text-center sm:text-left print:text-base">{chakra.label}</span>
+                    <div className="flex flex-col sm:flex-row sm:items-center justify-between mb-1 gap-2">
+                      <span className="text-lg italic font-bold text-center sm:text-left print:text-sm">{chakra.label}</span>
                       <div className="flex flex-wrap justify-center sm:justify-end gap-3 sm:gap-4 print:gap-2">
                         <label className="flex items-center gap-1.5 text-[10px] uppercase cursor-pointer font-bold">
                           <input
@@ -494,7 +494,7 @@ export default function App() {
                         type="text"
                         value={formData.chakras[chakra.key as keyof FormData['chakras']].observacoes}
                         onChange={(e) => updateChakra(chakra.key as keyof FormData['chakras'], 'observacoes', e.target.value)}
-                        className="flex-grow border-b border-stone-300 bg-transparent outline-none py-1 text-sm"
+                        className="flex-grow border-b border-stone-300 bg-transparent outline-none py-0.5 text-sm"
                       />
                     </div>
                   </div>
@@ -555,7 +555,7 @@ export default function App() {
           }
           .print-page {
             padding: 10mm 15mm !important;
-            height: 296mm !important;
+            height: 295mm !important;
             box-sizing: border-box !important;
             display: flex !important;
             flex-direction: column !important;
@@ -563,11 +563,14 @@ export default function App() {
             background-color: #fdfcf8 !important;
             page-break-after: always !important;
             break-after: page !important;
+            margin: 0 !important;
           }
           .print-page-1 {
             padding-top: 5mm !important;
           }
           .print-page-3 {
+            height: auto !important;
+            min-height: 295mm !important;
             page-break-after: auto !important;
             break-after: auto !important;
           }
@@ -589,6 +592,7 @@ export default function App() {
             margin-bottom: 10px !important;
             display: block !important;
             width: 100% !important;
+            text-align: left !important;
           }
           input::placeholder {
             color: transparent !important;
@@ -598,6 +602,8 @@ export default function App() {
             max-width: 100% !important;
             height: auto !important;
             display: block !important;
+          }
+          .print-logo {
             margin: 0 auto !important;
           }
           /* Ensure textareas and inputs show their content properly */
