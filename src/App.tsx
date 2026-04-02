@@ -197,13 +197,13 @@ export default function App() {
       <motion.div
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
-        className="w-full max-w-[160mm] mx-auto bg-[#fdfcf8] shadow-xl p-4 sm:p-8 md:p-12 print:shadow-none print:p-0 print:m-0 min-h-screen md:min-h-[297mm] text-stone-900 print-container"
+        className="w-full max-w-[160mm] mx-auto bg-[#fdfcf8] shadow-xl p-4 sm:p-8 md:p-12 print:shadow-none print:p-0 print:m-0 text-stone-900 print-container"
         ref={printRef}
       >
         {/* PAGE 1 CONTENT */}
-        <div className="print-page-1 min-h-screen md:min-h-[297mm] flex flex-col">
+        <div className="print-page print-page-1 flex flex-col">
           {/* Header Banner */}
-          <div className="mb-8">
+          <div className="mb-6 print:mb-4">
             <img 
               src="https://i.ibb.co/3mVPmrm8/marta-perfil-fundo-transparente.png" 
               alt="Banner Marta Ana Chiconato" 
@@ -322,9 +322,9 @@ export default function App() {
         </div>
 
         {/* PAGE 2 CONTENT: 4, 5 and Pináculos */}
-        <div className="print-page-2 min-h-screen md:min-h-[297mm] flex flex-col pt-8 print:pt-12">
+        <div className="print-page print-page-2 flex flex-col pt-8 print:pt-10">
           {/* Page Header for Print */}
-          <div className="hidden print:flex justify-between items-center mb-8 border-b border-stone-200 pb-4">
+          <div className="hidden print:flex justify-between items-center mb-6 border-b border-stone-200 pb-4">
             <span className="text-xs font-bold text-stone-400 uppercase tracking-widest">Ficha de Atendimento — Marta Ana Chiconato</span>
             <span className="text-xs font-bold text-stone-400 uppercase tracking-widest">Página 2</span>
           </div>
@@ -425,9 +425,9 @@ export default function App() {
         </div>
 
         {/* PAGE 3 CONTENT: Chakras */}
-        <div className="print-page-3 min-h-screen md:min-h-[297mm] flex flex-col pt-8 print:pt-12">
+        <div className="print-page print-page-3 flex flex-col pt-8 print:pt-10">
           {/* Page Header for Print */}
-          <div className="hidden print:flex justify-between items-center mb-8 border-b border-stone-200 pb-4">
+          <div className="hidden print:flex justify-between items-center mb-6 border-b border-stone-200 pb-4">
             <span className="text-xs font-bold text-stone-400 uppercase tracking-widest">Ficha de Atendimento — Marta Ana Chiconato</span>
             <span className="text-xs font-bold text-stone-400 uppercase tracking-widest">Página 3</span>
           </div>
@@ -544,12 +544,20 @@ export default function App() {
             position: relative !important;
             overflow: visible !important;
           }
-          .print-page-1, .print-page-2, .print-page-3 {
+          .print-page {
             padding: 15mm 20mm !important;
-            min-height: 297mm !important;
+            height: 296mm !important; /* Slightly less than 297 to avoid bleed */
             box-sizing: border-box !important;
             display: flex !important;
             flex-direction: column !important;
+            overflow: hidden !important;
+            background-color: #fdfcf8 !important;
+            page-break-after: always !important;
+            break-after: page !important;
+          }
+          .print-page-3 {
+            page-break-after: auto !important;
+            break-after: auto !important;
           }
           /* Header Banner adjustment */
           .mb-12 {
@@ -622,14 +630,6 @@ export default function App() {
           }
           .col-span-2 {
             grid-column: span 2 / span 2 !important;
-          }
-          .print-page-1, .print-page-2 {
-            page-break-after: always !important;
-            break-after: page !important;
-          }
-          .print-page-2, .print-page-3 {
-            page-break-before: always !important;
-            break-before: page !important;
           }
         }
       `}</style>
