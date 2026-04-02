@@ -10,6 +10,7 @@ import { motion } from 'motion/react';
 interface ChakraData {
   equilibrado: boolean;
   desequilibrio: boolean;
+  emDesenvolvimento: boolean;
   observacoes: string;
 }
 
@@ -18,6 +19,8 @@ interface FormData {
     dataAtendimento: string;
     dataNascimento: string;
     nomeCompleto: string;
+    nomeCompleto2: string;
+    nomeCompleto3: string;
   };
   numerologia: {
     alma: string;
@@ -48,10 +51,10 @@ interface FormData {
   };
 }
 
-const initialChakra = { equilibrado: false, desequilibrio: false, observacoes: '' };
+const initialChakra = { equilibrado: false, desequilibrio: false, emDesenvolvimento: false, observacoes: '' };
 
 const initialData: FormData = {
-  cliente: { dataAtendimento: '', dataNascimento: '', nomeCompleto: '' },
+  cliente: { dataAtendimento: '', dataNascimento: '', nomeCompleto: '', nomeCompleto2: '', nomeCompleto3: '' },
   numerologia: { alma: '', personalidade: '', destino: '' },
   leitura: { licaoDeVida: '', anoPessoal: '' },
   planosConsciencia: Array(9).fill(false),
@@ -135,7 +138,7 @@ export default function App() {
   return (
     <div className="min-h-screen bg-stone-100 py-4 md:py-8 px-2 md:px-4 print:p-0 print:bg-white">
       {/* Top Bar - Hidden on Print */}
-      <div className="max-w-4xl mx-auto mb-6 flex flex-col md:flex-row justify-between items-center gap-4 print:hidden">
+      <div className="max-w-4xl mx-auto mb-6 flex flex-col md:flex-row justify-between items-center gap-4 no-print">
         <h1 className="text-lg md:text-xl font-bold text-stone-800 flex items-center gap-2">
           <FileText className="w-5 h-5 md:w-6 md:h-6" />
           Ficha de Atendimento
@@ -166,7 +169,7 @@ export default function App() {
       </div>
 
       {/* Instructions - Visible only on Screen, at the top for better visibility */}
-      <div className="max-w-4xl mx-auto mb-8 px-4 print:hidden">
+      <div className="max-w-4xl mx-auto mb-8 px-4 no-print">
         <div className="bg-stone-100 border border-stone-200 rounded-lg p-6 text-stone-700 text-sm shadow-sm">
           <h4 className="font-bold uppercase tracking-wider mb-4 text-stone-800 flex items-center gap-2 text-xs">
             <span className="w-2 h-2 bg-stone-800 rounded-full"></span>
@@ -203,118 +206,112 @@ export default function App() {
         {/* PAGE 1 CONTENT */}
         <div className="print-page print-page-1 flex flex-col">
           {/* Header Banner */}
-          <div className="mb-6 print:mb-4">
+          <div className="mb-4 print:mb-2 text-center">
             <img 
               src="https://i.ibb.co/3mVPmrm8/marta-perfil-fundo-transparente.png" 
               alt="Banner Marta Ana Chiconato" 
-              className="w-full h-auto object-contain max-h-40"
+              className="w-full h-auto object-contain max-h-32 print:max-h-24 mx-auto"
               referrerPolicy="no-referrer"
             />
-            <div className="mt-4 border-t border-stone-300 w-full"></div>
+            <div className="mt-2 border-t border-stone-300 w-full"></div>
           </div>
 
           {/* Section 1: Cliente */}
-          <section className="mb-8">
-            <h3 className="text-base font-bold uppercase tracking-wider mb-4 flex items-center gap-4">
+          <section className="mb-4 print:mb-3">
+            <h3 className="text-xs font-bold uppercase tracking-wider mb-2 flex items-center gap-4">
               1. CLIENTE
               <div className="flex-grow border-t border-stone-200"></div>
             </h3>
-            <div className="grid grid-cols-2 gap-6 print:grid-cols-2">
+            <div className="grid grid-cols-2 gap-4 print:gap-2">
               <div className="flex flex-col gap-1">
-                <label className="text-xs uppercase text-stone-500 font-bold">Data do Atendimento</label>
+                <label className="text-[10px] uppercase text-stone-500 font-bold">Data do Atendimento</label>
                 <input
                   type="text"
                   value={formData.cliente.dataAtendimento}
                   onChange={(e) => updateField('cliente', 'dataAtendimento', e.target.value)}
-                  className="border-b border-stone-300 bg-transparent outline-none py-1 focus:border-stone-800"
+                  className="border-b border-stone-300 bg-transparent outline-none py-0.5 focus:border-stone-800 text-sm"
                   placeholder="___/___/___"
                 />
               </div>
               <div className="flex flex-col gap-1">
-                <label className="text-xs uppercase text-stone-500 font-bold">Data de Nascimento</label>
+                <label className="text-[10px] uppercase text-stone-500 font-bold">Data de Nascimento</label>
                 <input
                   type="text"
                   value={formData.cliente.dataNascimento}
                   onChange={(e) => updateField('cliente', 'dataNascimento', e.target.value)}
-                  className="border-b border-stone-300 bg-transparent outline-none py-1 focus:border-stone-800"
+                  className="border-b border-stone-300 bg-transparent outline-none py-0.5 focus:border-stone-800 text-sm"
                   placeholder="___/___/___"
                 />
               </div>
-              <div className="col-span-2 flex flex-col gap-1">
-                <label className="text-xs uppercase text-stone-500 font-bold">NOME DE BATISMO</label>
+              <div className="col-span-2 flex flex-col gap-1 mb-4">
+                <label className="text-[10px] uppercase text-stone-500 font-bold">NOME DE BATISMO</label>
                 <input
                   type="text"
                   value={formData.cliente.nomeCompleto}
                   onChange={(e) => updateField('cliente', 'nomeCompleto', e.target.value)}
-                  className="border-b border-stone-400 bg-transparent outline-none py-1 focus:border-stone-800 font-bold"
+                  className="border-b border-stone-400 bg-transparent outline-none py-0.5 focus:border-stone-800 font-bold text-sm"
                 />
-                <div className="border-b border-stone-400 h-6"></div>
-                <div className="border-b border-stone-400 h-6"></div>
+                <input
+                  type="text"
+                  value={formData.cliente.nomeCompleto2}
+                  onChange={(e) => updateField('cliente', 'nomeCompleto2', e.target.value)}
+                  className="border-b border-stone-400 bg-transparent outline-none py-0.5 focus:border-stone-800 font-bold text-sm"
+                />
+                <input
+                  type="text"
+                  value={formData.cliente.nomeCompleto3}
+                  onChange={(e) => updateField('cliente', 'nomeCompleto3', e.target.value)}
+                  className="border-b border-stone-400 bg-transparent outline-none py-0.5 focus:border-stone-800 font-bold text-sm"
+                />
               </div>
             </div>
           </section>
 
           {/* Section 2: Numerologia */}
-          <section className="mb-8">
-            <h3 className="text-base font-bold uppercase tracking-wider mb-4 flex items-center gap-4">
+          <section className="mb-4 print:mb-3">
+            <h3 className="text-xs font-bold uppercase tracking-wider mb-2 flex items-center gap-4">
               2. NUMEROLOGIA
               <div className="flex-grow border-t border-stone-200"></div>
             </h3>
-            <div className="space-y-4">
-              <div className="flex flex-col sm:flex-row sm:items-center gap-1 sm:gap-3 print:flex-row print:items-center print:gap-3">
-                <label className="text-sm font-bold min-w-[100px]">Alma:</label>
-                <input
-                  type="text"
-                  value={formData.numerologia.alma}
-                  onChange={(e) => updateField('numerologia', 'alma', e.target.value)}
-                  className="flex-grow border-b border-stone-400 bg-transparent outline-none py-1"
-                />
-              </div>
-              <div className="flex flex-col sm:flex-row sm:items-center gap-1 sm:gap-3 print:flex-row print:items-center print:gap-3">
-                <label className="text-sm font-bold min-w-[100px]">Personalidade:</label>
-                <input
-                  type="text"
-                  value={formData.numerologia.personalidade}
-                  onChange={(e) => updateField('numerologia', 'personalidade', e.target.value)}
-                  className="flex-grow border-b border-stone-400 bg-transparent outline-none py-1"
-                />
-              </div>
-              <div className="flex flex-col sm:flex-row sm:items-center gap-1 sm:gap-3 print:flex-row print:items-center print:gap-3">
-                <label className="text-sm font-bold min-w-[100px]">Destino:</label>
-                <input
-                  type="text"
-                  value={formData.numerologia.destino}
-                  onChange={(e) => updateField('numerologia', 'destino', e.target.value)}
-                  className="flex-grow border-b border-stone-400 bg-transparent outline-none py-1"
-                />
-              </div>
+            <div className="space-y-2">
+              {['Alma', 'Personalidade', 'Destino'].map((label) => (
+                <div key={label} className="flex items-center gap-3">
+                  <label className="text-xs font-bold min-w-[90px]">{label}:</label>
+                  <input
+                    type="text"
+                    value={(formData.numerologia as any)[label.toLowerCase()]}
+                    onChange={(e) => updateField('numerologia', label.toLowerCase(), e.target.value)}
+                    className="flex-grow border-b border-stone-400 bg-transparent outline-none py-0.5 text-sm"
+                  />
+                </div>
+              ))}
             </div>
           </section>
 
           {/* Section 3: Leitura */}
-          <section className="mb-4">
-            <h3 className="text-base font-bold uppercase tracking-wider mb-4 flex items-center gap-4">
+          <section className="mb-2">
+            <h3 className="text-xs font-bold uppercase tracking-wider mb-2 flex items-center gap-4">
               3. LEITURA
               <div className="flex-grow border-t border-stone-200"></div>
             </h3>
-            <div className="border border-stone-300 p-4 rounded-sm">
-              <div className="mb-4">
-                <label className="text-sm font-bold block mb-2">Lição de Vida:</label>
+            <div className="border border-stone-300 p-2 rounded-sm">
+              <div className="mb-2">
+                <label className="text-xs font-bold block mb-1">Lição de Vida:</label>
                 <textarea
                   value={formData.leitura.licaoDeVida}
                   onChange={(e) => updateField('leitura', 'licaoDeVida', e.target.value)}
-                  rows={6}
-                  className="w-full bg-transparent border-none outline-none resize-none leading-relaxed"
-                  style={{ backgroundImage: 'linear-gradient(transparent, transparent 27px, #e5e7eb 27px)', backgroundSize: '100% 28px' }}
+                  rows={5}
+                  className="w-full bg-transparent border-none outline-none resize-none leading-relaxed text-sm"
+                  style={{ backgroundImage: 'linear-gradient(transparent, transparent 23px, #e5e7eb 23px)', backgroundSize: '100% 24px' }}
                 />
               </div>
               <div className="flex items-center gap-3">
-                <label className="text-sm font-bold">Ano Pessoal:</label>
+                <label className="text-xs font-bold">Ano Pessoal:</label>
                 <input
                   type="text"
                   value={formData.leitura.anoPessoal}
                   onChange={(e) => updateField('leitura', 'anoPessoal', e.target.value)}
-                  className="w-32 border-b border-stone-400 bg-transparent outline-none py-1"
+                  className="w-24 border-b border-stone-400 bg-transparent outline-none py-0.5 text-sm"
                 />
               </div>
             </div>
@@ -331,7 +328,7 @@ export default function App() {
 
           {/* Section 4: Planos de Consciência */}
           <section className="mb-8">
-            <h3 className="text-base font-bold uppercase tracking-wider mb-6 flex items-center gap-4">
+            <h3 className="text-xs font-bold uppercase tracking-wider mb-6 flex items-center gap-4">
               4. PLANOS DE CONSCIÊNCIA
               <div className="flex-grow border-t border-stone-200"></div>
             </h3>
@@ -365,7 +362,7 @@ export default function App() {
 
           {/* Section 5: Karma e Darma */}
           <section className="mb-8">
-            <h3 className="text-base font-bold uppercase tracking-wider mb-6 flex items-center gap-4">
+            <h3 className="text-xs font-bold uppercase tracking-wider mb-6 flex items-center gap-4">
               5. KARMA E DARMA
               <div className="flex-grow border-t border-stone-200"></div>
             </h3>
@@ -375,7 +372,7 @@ export default function App() {
                 <textarea
                   value={formData.karma}
                   onChange={(e) => setFormData(prev => ({ ...prev, karma: e.target.value }))}
-                  rows={8}
+                  rows={6}
                   className="w-full bg-transparent border-none outline-none resize-none leading-relaxed"
                   style={{ backgroundImage: 'linear-gradient(transparent, transparent 27px, #e5e7eb 27px)', backgroundSize: '100% 28px' }}
                 />
@@ -385,7 +382,7 @@ export default function App() {
                 <textarea
                   value={formData.darma}
                   onChange={(e) => setFormData(prev => ({ ...prev, darma: e.target.value }))}
-                  rows={8}
+                  rows={6}
                   className="w-full bg-transparent border-none outline-none resize-none leading-relaxed"
                   style={{ backgroundImage: 'linear-gradient(transparent, transparent 27px, #e5e7eb 27px)', backgroundSize: '100% 28px' }}
                 />
@@ -396,7 +393,7 @@ export default function App() {
           {/* Section: Pináculos (Moved to Page 2) */}
           <section className="mb-6">
             <div className="text-center mb-6">
-              <h2 className="text-lg tracking-[0.2em] uppercase font-bold">Pináculos — <span className="italic text-[#8b2b2b]">Ciclos de Vida</span></h2>
+              <h2 className="text-base tracking-[0.2em] uppercase font-bold">Pináculos — <span className="italic text-[#8b2b2b]">Ciclos de Vida</span></h2>
               <div className="mt-1 w-16 h-1 bg-[#8b2b2b] mx-auto"></div>
             </div>
             <div className="grid grid-cols-2 gap-4">
@@ -414,7 +411,7 @@ export default function App() {
                       ...prev,
                       pinaculos: { ...prev.pinaculos, [p.key]: e.target.value }
                     }))}
-                    rows={4}
+                    rows={5}
                     className="w-full bg-transparent border-none outline-none resize-none leading-tight text-sm"
                     style={{ backgroundImage: 'linear-gradient(transparent, transparent 23px, #e5e7eb 23px)', backgroundSize: '100% 24px' }}
                   />
@@ -435,7 +432,7 @@ export default function App() {
           {/* Section: Análise Energética - Chakras */}
           <section className="mb-6">
             <div className="text-center mb-8">
-              <h2 className="text-xl tracking-[0.2em] uppercase font-bold">Análise Energética — <span className="italic text-[#8b2b2b]">Chakras</span></h2>
+              <h2 className="text-lg tracking-[0.2em] uppercase font-bold">Análise Energética — <span className="italic text-[#8b2b2b]">Chakras</span></h2>
               <div className="mt-2 w-24 h-1 bg-[#8b2b2b] mx-auto"></div>
             </div>
             
@@ -460,35 +457,44 @@ export default function App() {
                   </div>
                   <div className="flex-grow pt-1 w-full">
                     <div className="flex flex-col sm:flex-row sm:items-center justify-between mb-2 gap-2">
-                      <span className="text-xl italic font-bold text-center sm:text-left print:text-lg">{chakra.label}</span>
-                      <div className="flex justify-center sm:justify-end gap-6 print:gap-4">
-                        <label className="flex items-center gap-2 text-xs uppercase cursor-pointer font-bold">
+                      <span className="text-lg italic font-bold text-center sm:text-left print:text-base">{chakra.label}</span>
+                      <div className="flex flex-wrap justify-center sm:justify-end gap-3 sm:gap-4 print:gap-2">
+                        <label className="flex items-center gap-1.5 text-[10px] uppercase cursor-pointer font-bold">
                           <input
                             type="checkbox"
                             checked={formData.chakras[chakra.key as keyof FormData['chakras']].equilibrado}
                             onChange={(e) => updateChakra(chakra.key as keyof FormData['chakras'], 'equilibrado', e.target.checked)}
-                            className="w-4 h-4 accent-stone-800"
+                            className="w-3.5 h-3.5 accent-stone-800"
                           />
                           Equilibrado
                         </label>
-                        <label className="flex items-center gap-2 text-xs uppercase cursor-pointer font-bold">
+                        <label className="flex items-center gap-1.5 text-[10px] uppercase cursor-pointer font-bold">
                           <input
                             type="checkbox"
                             checked={formData.chakras[chakra.key as keyof FormData['chakras']].desequilibrio}
                             onChange={(e) => updateChakra(chakra.key as keyof FormData['chakras'], 'desequilibrio', e.target.checked)}
-                            className="w-4 h-4 accent-stone-800"
+                            className="w-3.5 h-3.5 accent-stone-800"
                           />
                           Desequilíbrio
+                        </label>
+                        <label className="flex items-center gap-1.5 text-[10px] uppercase cursor-pointer font-bold">
+                          <input
+                            type="checkbox"
+                            checked={formData.chakras[chakra.key as keyof FormData['chakras']].emDesenvolvimento}
+                            onChange={(e) => updateChakra(chakra.key as keyof FormData['chakras'], 'emDesenvolvimento', e.target.checked)}
+                            className="w-3.5 h-3.5 accent-stone-800"
+                          />
+                          Em Desenvolvimento
                         </label>
                       </div>
                     </div>
                     <div className="flex flex-col sm:flex-row sm:items-baseline gap-2">
-                      <span className="text-xs font-bold uppercase text-stone-500 whitespace-nowrap">Observações:</span>
+                      <span className="text-[10px] font-bold uppercase text-stone-500 whitespace-nowrap">Observações:</span>
                       <input
                         type="text"
                         value={formData.chakras[chakra.key as keyof FormData['chakras']].observacoes}
                         onChange={(e) => updateChakra(chakra.key as keyof FormData['chakras'], 'observacoes', e.target.value)}
-                        className="flex-grow border-b border-stone-300 bg-transparent outline-none py-1 text-base"
+                        className="flex-grow border-b border-stone-300 bg-transparent outline-none py-1 text-sm"
                       />
                     </div>
                   </div>
@@ -504,7 +510,7 @@ export default function App() {
       </motion.div>
 
       {/* Footer - Hidden on Print */}
-      <div className="max-w-4xl mx-auto mt-8 mb-12 px-4 text-center text-stone-500 text-sm print:hidden">
+      <div className="max-w-4xl mx-auto mt-8 mb-12 px-4 text-center text-stone-500 text-sm no-print">
         <p>© 2026 Marta Ana Chiconato. Todos os direitos reservados.</p>
         <p className="mt-2 text-xs">
           Desenvolvido por <a href="https://www.orvalia.com.br" target="_blank" rel="noopener noreferrer" className="text-[#008686] font-semibold hover:text-[#006666] transition-colors">Orvalia Studio</a>
@@ -517,6 +523,9 @@ export default function App() {
           @page {
             margin: 0;
             size: A4;
+          }
+          .no-print {
+            display: none !important;
           }
           html, body {
             height: auto !important;
@@ -535,9 +544,9 @@ export default function App() {
           }
           .print-container {
             width: 100% !important;
-            max-width: 210mm !important; /* Full A4 width */
+            max-width: 210mm !important;
             margin: 0 !important;
-            padding: 0 !important; /* Remove container padding, pages will have their own */
+            padding: 0 !important;
             box-shadow: none !important;
             background-color: #fdfcf8 !important;
             display: block !important;
@@ -545,8 +554,8 @@ export default function App() {
             overflow: visible !important;
           }
           .print-page {
-            padding: 15mm 20mm !important;
-            height: 296mm !important; /* Slightly less than 297 to avoid bleed */
+            padding: 10mm 15mm !important;
+            height: 296mm !important;
             box-sizing: border-box !important;
             display: flex !important;
             flex-direction: column !important;
@@ -558,13 +567,6 @@ export default function App() {
           .print-page-3 {
             page-break-after: auto !important;
             break-after: auto !important;
-          }
-          /* Header Banner adjustment */
-          .mb-12 {
-            margin-bottom: 15px !important;
-          }
-          .mt-6 {
-            margin-top: 10px !important;
           }
           /* Fix for textareas with lines */
           textarea {
@@ -581,7 +583,7 @@ export default function App() {
           /* Ensure sections don't break awkwardly */
           section {
             page-break-inside: avoid;
-            margin-bottom: 15px !important;
+            margin-bottom: 10px !important;
             display: block !important;
             width: 100% !important;
           }
@@ -617,7 +619,7 @@ export default function App() {
           }
           .grid {
             display: grid !important;
-            gap: 1.5rem !important;
+            gap: 1rem !important;
           }
           .flex {
             display: flex !important;
