@@ -319,7 +319,7 @@ export default function App() {
         </div>
 
         {/* PAGE 2 CONTENT: 4, 5 and Pináculos */}
-        <div className="print-page print-page-2 flex flex-col pt-8 print:pt-10">
+        <div className="print-page print-page-2 flex flex-col pt-8 print:pt-4">
           {/* Page Header for Print */}
           <div className="hidden print:flex justify-between items-center mb-6 border-b border-stone-200 pb-4">
             <span className="text-xs font-bold text-stone-400 uppercase tracking-widest">Ficha de Atendimento — Marta Ana Chiconato</span>
@@ -422,7 +422,7 @@ export default function App() {
         </div>
 
         {/* PAGE 3 CONTENT: Chakras */}
-        <div className="print-page print-page-3 flex flex-col pt-8 print:pt-10">
+        <div className="print-page print-page-3 flex flex-col pt-8 print:pt-4">
           {/* Page Header for Print */}
           <div className="hidden print:flex justify-between items-center mb-6 border-b border-stone-200 pb-4">
             <span className="text-xs font-bold text-stone-400 uppercase tracking-widest">Ficha de Atendimento — Marta Ana Chiconato</span>
@@ -436,7 +436,7 @@ export default function App() {
               <div className="mt-2 w-24 h-1 bg-[#8b2b2b] mx-auto"></div>
             </div>
             
-            <div className="space-y-8 print:space-y-2">
+            <div className="space-y-8 print:space-y-1">
               {[
                 { key: 'coronario', label: 'Coronário', icon: 'https://i.ibb.co/Vs1dW6X/1-coronario.png' },
                 { key: 'frontal', label: 'Frontal', icon: 'https://i.ibb.co/xKNqLz36/2-frontal.png' },
@@ -502,7 +502,7 @@ export default function App() {
               ))}
             </div>
             
-            <div className="mt-12 text-center text-[10px] uppercase tracking-[0.3em] text-stone-400 font-bold">
+            <div className="mt-4 text-center text-[10px] uppercase tracking-[0.3em] text-stone-400 font-bold">
               Formulário de Análise Energética — Confidencial
             </div>
           </section>
@@ -555,7 +555,7 @@ export default function App() {
           }
           .print-page {
             padding: 10mm 15mm !important;
-            height: 295mm !important;
+            height: 290mm !important;
             box-sizing: border-box !important;
             display: flex !important;
             flex-direction: column !important;
@@ -567,6 +567,10 @@ export default function App() {
             break-after: page !important;
             margin: 0 !important;
             text-align: left !important;
+          }
+          .print-page:last-child {
+            page-break-after: auto !important;
+            break-after: auto !important;
           }
           .print-center {
             display: flex !important;
@@ -580,8 +584,7 @@ export default function App() {
             padding-top: 5mm !important;
           }
           .print-page-3 {
-            height: auto !important;
-            min-height: 295mm !important;
+            height: 290mm !important;
             page-break-after: auto !important;
             break-after: auto !important;
           }
