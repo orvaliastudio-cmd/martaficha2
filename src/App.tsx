@@ -200,7 +200,7 @@ export default function App() {
       <motion.div
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
-        className="w-full max-w-[160mm] mx-auto bg-[#fdfcf8] shadow-xl p-4 sm:p-8 md:p-12 print:shadow-none print:p-0 print:m-0 text-stone-900 print-container"
+        className="w-full max-w-[160mm] mx-auto bg-[#fdfcf8] shadow-xl p-4 sm:p-8 md:p-12 print:shadow-none print:p-0 print:m-0 print:transform-none text-stone-900 print-container"
         ref={printRef}
       >
         {/* PAGE 1 CONTENT */}
@@ -563,6 +563,9 @@ export default function App() {
             background-color: #fdfcf8 !important;
             page-break-after: always !important;
             break-after: page !important;
+          }
+          .print-page-1 {
+            padding-top: 5mm !important;
           }
           .print-page-3 {
             page-break-after: auto !important;
